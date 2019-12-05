@@ -6,9 +6,10 @@ import com.udacity.course3.reviews.entities.Reviews;
 import com.udacity.course3.reviews.repository.CommentRepository;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import com.udacity.course3.reviews.repository.ReviewsRepository;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+/*import org.junit.Test;
+import org.junit.runner.RunWith;*/
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)*/
 @DataJpaTest
 public class ReviewsApplicationTests {
 	@Autowired
@@ -46,7 +47,7 @@ public class ReviewsApplicationTests {
 
 		System.out.println(review + "test");
 		review = reviewsRepository.save(review);
-		Assert.assertNotNull("review is null", review);
+		Assertions.assertNotNull(review);
 
 	}
 	@Test
@@ -57,7 +58,7 @@ public class ReviewsApplicationTests {
 		product.setProductName("dina");
 		product.setReviews(reviews);
 		product = productRepository.save(product);
-		Assert.assertNotNull("review is null", product);
+		Assertions.assertNotNull(product);
 
 	}
 
@@ -74,20 +75,20 @@ public class ReviewsApplicationTests {
 
 		reviewTest();
 		Comment comment = new Comment("Very good");
-		comment.setReviewId(1);
+		comment.setReviewId(new Reviews());
 		comment = commentRepository.save(comment);
-		Assert.assertNotNull(comment.getCommentId());
+		Assertions.assertNotNull(comment.getCommentId());
 
 		Optional<Comment> savedComment = commentRepository.findById(comment.getCommentId());
-		Assert.assertTrue(savedComment.isPresent());
-		Assert.assertEquals(comment, savedComment.get());
+		Assertions.assertTrue(savedComment.isPresent());
+		Assertions.assertEquals(comment, savedComment.get());
 
 
 		List<Comment> comments = commentRepository.findAll();
-		Assert.assertTrue(comments.size()>0);
+		Assertions.assertTrue(comments.size()>0);
 
 		comments = commentRepository.findAllByReviewId(1);
-		Assert.assertTrue(comments.size()>0);
+		Assertions.assertTrue(comments.size()>0);
 
 	}
 }

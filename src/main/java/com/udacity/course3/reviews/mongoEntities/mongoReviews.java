@@ -14,7 +14,7 @@ public class mongoReviews {
     @Id
     private int reviewId;
 
-    private Product product;
+    private Integer productId;
     private String review;
     private List<mongoReviews> reviews = new ArrayList<>();
 
@@ -34,12 +34,12 @@ public class mongoReviews {
         this.review = review;
     }
 
-    public Product getProduct() {
-        return product;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public int getReviewId() {

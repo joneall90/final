@@ -56,7 +56,7 @@ public class ReviewsController {
             mongoReviews mongoReview = new mongoReviews();
                 mongoReview.setReviewId(review.getReviewId());
                 mongoReview.setReview(review.getReview());
-                mongoReview.setProduct(product.get());
+                mongoReview.setProductId(productId);
             try {
                 review = reviewsRepository.save(review);
                 mongoReview = mongoReviewsRepository.save(mongoReview);
@@ -81,7 +81,7 @@ public class ReviewsController {
 
         Optional<Product> product = productRepository.findById(productId);
         if(product.isPresent()){
-            return mongoReviewsRepository.findByProduct(product.get());
+            return mongoReviewsRepository.findByProductId(productId);
         }
         return Collections.emptyList();
     }

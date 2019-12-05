@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MongoReviewsRepository extends MongoRepository<mongoReviews,String> {
-    List<mongoReviews> findByProduct(Product productd);
+    List<mongoReviews> findByProductId(Integer productId);
 }
