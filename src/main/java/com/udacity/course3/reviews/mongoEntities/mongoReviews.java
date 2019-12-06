@@ -16,14 +16,14 @@ public class mongoReviews {
 
     private Integer productId;
     private String review;
-    private List<mongoReviews> reviews = new ArrayList<>();
+    private List<mongoComment> comments = new ArrayList<>();
 
-    public List<mongoReviews> getReviews() {
-        return reviews;
+    public List<mongoComment> getComments() {
+        return comments;
     }
 
-    public void setReviews(List<mongoReviews> reviews) {
-        this.reviews = reviews;
+    public void setComments(List<mongoComment> comments) {
+        this.comments = comments;
     }
 
     public String getReview() {

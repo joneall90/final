@@ -2,6 +2,7 @@ package com.udacity.course3.reviews.controller;
 
 import com.udacity.course3.reviews.entities.Comment;
 import com.udacity.course3.reviews.entities.Reviews;
+import com.udacity.course3.reviews.mongoEntities.mongoComment;
 import com.udacity.course3.reviews.repository.CommentRepository;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import com.udacity.course3.reviews.repository.ReviewsRepository;
@@ -44,6 +45,10 @@ public class CommentsController {
         if(review.isPresent()){
             comment.setReviewId(reviewId);
             comment = commentRepository.save(comment);
+            mongoComment mongoComment = new mongoComment();
+            mongoComment.setCommentId(comment.getCommentId());
+            mongoComment.setComment(comment.getComment());
+            mongoComment.setReviewId(reviewId);
             return ResponseEntity.ok(comment);
         } else {
             return ResponseEntity.notFound().build();
@@ -64,7 +69,7 @@ public class CommentsController {
     public ResponseEntity<List<Comment>> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
         Optional<Reviews> review = reviewsRepository.findById(reviewId);
         if(review.isPresent()){
-            List<Comment> comments = commentRepository.findAllByReviewId(reviewId);
+            List<Comment> comments = commentRepository.findAllByReviewId(review.get());
             return ResponseEntity.ok(comments);
         }
         else {

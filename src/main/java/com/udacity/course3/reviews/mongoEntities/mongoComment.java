@@ -1,6 +1,7 @@
 package com.udacity.course3.reviews.mongoEntities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.udacity.course3.reviews.entities.Reviews;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ public class mongoComment {
 
     @Id
     private int commentId;
-    private mongoReviews reviewId;
+    private Reviews reviewId;
     private String comment;
 
     public mongoComment(String comment) {
@@ -25,11 +26,11 @@ public class mongoComment {
         this.commentId = commentId;
     }
 
-    public mongoReviews getReviewId() {
+    public Reviews getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(mongoReviews reviewId) {
+    public void setReviewId(Reviews reviewId) {
         this.reviewId = reviewId;
     }
 

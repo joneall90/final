@@ -16,13 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
 public class MongoDBTest {
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     @DisplayName("given object to save"
     + "when save object using mongoDBTemplate"
     + "then object is saved")
 
     @Test
-    public void test(@Autowired MongoTemplate mongoTemplate){
+    public void test(){
         DBObject objectToSave = BasicDBObjectBuilder.start()
                 .add("key","value")
                 .get();

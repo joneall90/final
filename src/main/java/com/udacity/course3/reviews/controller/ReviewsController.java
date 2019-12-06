@@ -53,12 +53,13 @@ public class ReviewsController {
         Optional<Product> product = productRepository.findById(productId);
         if(product.isPresent()){
             review.setProduct(product.get());
+            review = reviewsRepository.save(review);
             mongoReviews mongoReview = new mongoReviews();
-                mongoReview.setReviewId(review.getReviewId());
-                mongoReview.setReview(review.getReview());
-                mongoReview.setProductId(productId);
+            mongoReview.setReviewId(review.getReviewId());
+            mongoReview.setReview(review.getReview());
+            mongoReview.setProductId(productId);
             try {
-                review = reviewsRepository.save(review);
+                // review = reviewsRepository.save(review);
                 mongoReview = mongoReviewsRepository.save(mongoReview);
             } catch (Exception e){
                 System.out.println(e);

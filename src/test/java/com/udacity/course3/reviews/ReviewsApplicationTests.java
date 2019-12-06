@@ -39,14 +39,19 @@ public class ReviewsApplicationTests {
 		productTest();
 		Reviews review = new Reviews();
 		review.setReview("very good");
-		Product product = new Product();
+		/*Product product = new Product();
 		product.setProductId(1);
-		product.setProductName("dina");
-		review.setProduct(product);
+		product.setProductName("dina");*/
+		Optional<Product> product = productRepository.findById(1);
+		if(product.isPresent()){
+			Product testProd = productRepository.findById(1).get();
+			review.setProduct(testProd);
+		}
 
 
-		System.out.println(review + "test");
+		System.out.println(review.getReviewId() + "test");
 		review = reviewsRepository.save(review);
+		System.out.println(reviewsRepository.findById(1));
 		Assertions.assertNotNull(review);
 
 	}
@@ -75,7 +80,8 @@ public class ReviewsApplicationTests {
 
 		reviewTest();
 		Comment comment = new Comment("Very good");
-		comment.setReviewId(new Reviews());
+		Reviews rev4Com = reviewsRepository.findById(1).get();
+		comment.setReviewId(rev4Com);
 		comment = commentRepository.save(comment);
 		Assertions.assertNotNull(comment.getCommentId());
 
@@ -87,7 +93,7 @@ public class ReviewsApplicationTests {
 		List<Comment> comments = commentRepository.findAll();
 		Assertions.assertTrue(comments.size()>0);
 
-		comments = commentRepository.findAllByReviewId(1);
+		comments = commentRepository.findAllByReviewId(reviewsRepository.findById(1).get());
 		Assertions.assertTrue(comments.size()>0);
 
 	}
