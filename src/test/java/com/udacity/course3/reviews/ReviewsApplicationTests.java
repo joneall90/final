@@ -77,8 +77,9 @@ public class ReviewsApplicationTests {
 	}*/
 	@Test
 	public void testSaveAndGetComments(){
-
+	
 		reviewTest();
+
 		Comment comment = new Comment("Very good");
 		Reviews rev4Com = reviewsRepository.findById(1).get();
 		comment.setReviewId(rev4Com);
